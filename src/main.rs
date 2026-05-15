@@ -24,7 +24,7 @@ use crate::app::{AppStage, SpeedTestConfig, build_client, run_speed_test, stage_
 #[command(author, version, about)]
 struct Args {
     /// Number of parallel download streams
-    #[arg(short, long, default_value_t = 4)]
+    #[arg(short, long, default_value_t = 8)]
     connections: usize,
 
     /// Test duration in seconds

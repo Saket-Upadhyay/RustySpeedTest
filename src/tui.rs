@@ -151,8 +151,11 @@ pub async fn run_tui(config: SpeedTestConfig) -> Result<()> {
     if let Some(res) = result {
         match res {
             Ok(done) => {
+                println!("RustySpeedTest completed");
+                println!("=========================");
                 println!("Download: {:.2} MBps", done.download_mbps);
                 println!("Upload: {:.2} MBps", done.upload_mbps);
+                println!("=========================");
                 println!(
                     "Downloaded: {:.2} MB",
                     metrics::bytes_to_mb(done.download_bytes)
@@ -162,6 +165,7 @@ pub async fn run_tui(config: SpeedTestConfig) -> Result<()> {
                     metrics::bytes_to_mb(done.upload_bytes)
                 );
                 println!("Per-phase duration: {}s", done.phase_duration);
+                println!("=========================");
             }
             Err(err) => {
                 println!("Speed test failed: {}", err);
@@ -238,10 +242,10 @@ fn draw_ui(
             .split(frame.area());
 
         let header = Paragraph::new(Line::from(Span::styled(
-            "RustySpeedTest",
+            "RustySpeedTest x DrDope",
             Style::default().fg(Color::Cyan),
         )))
-        .block(Block::default().borders(Borders::ALL).title("Status"));
+        .block(Block::default().borders(Borders::ALL).title(""));
         frame.render_widget(header, chunks[0]);
 
         let status_lines = vec![
@@ -266,7 +270,10 @@ fn draw_ui(
                         "Downloaded: {:.2} MB",
                         metrics::bytes_to_mb(done.download_bytes)
                     ))),
-                    Line::from(Span::raw(format!("Upload: {:.2} MBps", done.upload_mbps))),
+                    Line::from(Span::styled(
+                        format!("Upload: {:.2} MBps", done.upload_mbps),
+                        Style::default().fg(Color::Cyan)
+                    )),
                     Line::from(Span::raw(format!(
                         "Uploaded: {:.2} MB",
                         metrics::bytes_to_mb(done.upload_bytes)
@@ -287,7 +294,7 @@ fn draw_ui(
         } else {
             let v = vec![
                 Line::from(Span::raw(format!("Elapsed: {}s", elapsed_secs))),
-                Line::from(Span::raw(format!("Downloaded: {:.2} MB", downloaded_mb))),
+                Line::from(Span::raw(format!("Transferred: {:.2} MB", downloaded_mb))),
                 Line::from(Span::raw(format!("Estimated: {:.2} MBps", live_mbps))),
             ];
 
