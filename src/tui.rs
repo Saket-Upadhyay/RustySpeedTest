@@ -272,7 +272,7 @@ fn draw_ui(
                     ))),
                     Line::from(Span::styled(
                         format!("Upload: {:.2} MBps", done.upload_mbps),
-                        Style::default().fg(Color::Cyan)
+                        Style::default().fg(Color::Cyan),
                     )),
                     Line::from(Span::raw(format!(
                         "Uploaded: {:.2} MB",
