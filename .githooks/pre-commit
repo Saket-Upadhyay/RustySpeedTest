@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+# Shared pre-commit hook: enforce `cargo fmt -- --check` and reject the commit
+# if formatting is required.
+
+# If cargo is not installed, skip to avoid blocking non-Rust systems.
+if ! command -v cargo >/dev/null 2>&1; then
+  echo "cargo not found; skipping rustfmt check"
+  exit 0
+fi
+
+echo "Checking formatting with cargo fmt -- --check..."
+if ! cargo fmt -- --check; then
+  echo "ERROR: Code is not formatted. Run 'cargo fmt' to fix formatting."
+  # Optionally, show a helpful hint
+  echo "You can auto-format locally by running:"
+  echo "  cargo fmt"
+  exit 1
+fi
+
+exit 0
+

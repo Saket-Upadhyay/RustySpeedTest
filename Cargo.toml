@@ -1,0 +1,23 @@
+[package]
+name = "RustySpeedTest"
+version = "0.1.0"
+edition = "2024"
+authors = ["Saket Upadhyay <saketupadhyay@protonmail.com>"]
+description = "Terminal-first download speed test using Fast.com servers"
+license = "MIT"
+repository = "https://github.com/Saket-Upadhyay/RustySpeedTest"
+
+[lib]
+name = "rusty_speed_test"
+path = "src/lib.rs"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.13.3", features = ["json", "stream"] }
+serde = { version = "1", features = ["derive"] }
+clap = { version = "4", features = ["derive"] }
+futures-util = "0.3"
+regex = "1"
+anyhow = "1"
+ratatui = "0.30.0"
+crossterm = "0.29.0"
