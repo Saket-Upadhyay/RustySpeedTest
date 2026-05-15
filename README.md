@@ -1,4 +1,8 @@
 # RustySpeedTest
+[![CI](https://github.com/Saket-Upadhyay/RustySpeedTest/actions/workflows/ci.yml/badge.svg)](https://github.com/Saket-Upadhyay/RustySpeedTest/actions/workflows/ci.yml) ![Rust Badge](https://img.shields.io/badge/Rust-orange?logo=Rust)
+
+
+
 A small, terminal-first download/upload speed test using fast.com.
 
 Quick start:
